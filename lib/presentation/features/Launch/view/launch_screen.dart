@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/constants/app_assets.dart';
-import '../../home/view/home_screen.dart';
-import '../../onBorading/view/onboarding_screen.dart';
+import '../../auth/view/login_screen.dart';
+import '../../auth/view/signup_screen.dart';
 
 class LaunchScreen extends StatelessWidget {
   const LaunchScreen({super.key});
@@ -38,13 +38,13 @@ class LaunchScreen extends StatelessWidget {
               const SizedBox(height: 50),
               SizedBox(
                 width: 165,
-                height: 40,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   },
@@ -69,13 +69,13 @@ class LaunchScreen extends StatelessWidget {
               const SizedBox(height: 4),
               SizedBox(
                 width: 165,
-                height: 40,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const SignUpScreen(),
                       ),
                     );
                   },

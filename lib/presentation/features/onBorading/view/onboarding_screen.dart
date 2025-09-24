@@ -3,8 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../../widgets/app_container.dart';
-import '../../../models/onboarding_data.dart';
+import '../../../../data/models/onboarding_data.dart';
 import '../../home/view/home_screen.dart';
 import '../../Launch/view/launch_screen.dart';
 
@@ -50,7 +49,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  MaterialPageRoute(builder: (context) => const LaunchScreen()),
                 );
               },
               child: Text(
@@ -170,7 +169,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           child: Text(
                             OnboardingItems.items[_currentIndex].buttonText,
                             style: const TextStyle(
-                              fontFamily: 'Inter',
+                              fontFamily: 'LeagueSpartan',
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
