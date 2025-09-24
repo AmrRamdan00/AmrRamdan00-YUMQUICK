@@ -4,8 +4,10 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/text_style_config.dart';
 import '../../../../core/validation/email_validation.dart';
 import '../../../../core/validation/password_validation.dart';
+import '../../../../data/repository/restaurant_repository.dart';
 import '../widgets/auth_widgets.dart';
 import 'login_screen.dart';
+import '../../home/view/home_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -21,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _passwordController = TextEditingController();
   final _mobileController = TextEditingController();
   final _dateOfBirthController = TextEditingController();
+  final RestaurantRepository _repository = RestaurantRepository();
   bool _isLoading = false;
 
   @override
@@ -39,20 +42,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isLoading = true;
       });
 
-      await Future.delayed(const Duration(seconds: 2));
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Account created successfully!'),
-            backgroundColor: AppColors.success,
-          ),
+      try {
+        // Call the API to register user
+        await _repository.registerUser(
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
         );
-        Navigator.pop(context);
+
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Account created successfully!'),
+              backgroundColor: AppColors.success,
+            ),
+          );
+
+          // Navigate to home screen after successful signup
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        }
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Signup failed: ${e.toString()}'),
+              backgroundColor: AppColors.error,
+            ),
+          );
+        }
       }
     }
   }
