@@ -21,7 +21,7 @@ class AppTheme {
   );
 
   static const TextStyle agSubtitle = TextStyle(
-    fontFamily: 'Inter',
+    fontFamily: 'LeagueSpartan',
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColors.font,
@@ -29,7 +29,7 @@ class AppTheme {
   );
 
   static const TextStyle agParagraph = TextStyle(
-    fontFamily: 'Inter',
+    fontFamily: 'LeagueSpartan',
     fontSize: 14,
     height: 14 / 14,
     fontWeight: FontWeight.normal,
@@ -45,7 +45,7 @@ class AppTheme {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
     textStyle: const TextStyle(
-      fontFamily: 'Inter',
+      fontFamily: 'LeagueSpartan',
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
@@ -59,7 +59,7 @@ class AppTheme {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
     textStyle: const TextStyle(
-      fontFamily: 'Inter',
+      fontFamily: 'LeagueSpartan',
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
@@ -71,7 +71,7 @@ class AppTheme {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
     textStyle: const TextStyle(
-      fontFamily: 'Inter',
+      fontFamily: 'LeagueSpartan',
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
@@ -101,7 +101,7 @@ class AppTheme {
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     hintStyle: const TextStyle(
-      fontFamily: 'Inter',
+      fontFamily: 'LeagueSpartan',
       color: AppColors.grey,
       fontSize: 14,
     ),
