@@ -8,7 +8,7 @@ import '../../../../data/repository/restaurant_repository.dart';
 import '../widgets/auth_widgets.dart';
 import 'set_password_screen.dart';
 import 'signup_screen.dart';
-import '../../home/view/home_screen.dart';
+import '../../../../core/main_navigation/main_navigation_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -56,10 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
 
-          // Navigate to home screen after successful login
+          // Navigate to main navigation screen after successful login
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+              builder: (context) => const MainNavigationScreen(),
+            ),
           );
         }
       } catch (e) {

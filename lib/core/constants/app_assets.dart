@@ -15,5 +15,9 @@ class AppAssets {
   static const String veganIcon = 'assets/icons/Vegan.svg';
   static const String dessertIcon = 'assets/icons/Desserts.svg';
   static const String drinkIcon = 'assets/icons/Drinks.svg';
- 
+  static const String homeIcon = 'assets/icons/Home_icon.svg';
+  static const String menuIcon = 'assets/icons/Menu_icon.svg';
+  static const String favoritesIcon = 'assets/icons/Favorites_icon.svg';
+  static const String ordersIcon = 'assets/icons/orders_icon.svg';
+  static const String supportIcon = 'assets/icons/Support_icon.svg';
 }

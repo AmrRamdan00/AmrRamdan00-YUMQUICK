@@ -9,7 +9,9 @@ import '../widgets/food_section.dart';
 import '../widgets/promotional_banner.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final Function(String)? onCategorySelected;
+
+  const HomeScreen({super.key, this.onCategorySelected});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -119,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20), // Add some top padding
-                  const FoodCategories(),
+                  FoodCategories(onCategorySelected: widget.onCategorySelected),
                   FoodSection(
                     title: 'Best Seller',
                     items: _bestSellingItems,
