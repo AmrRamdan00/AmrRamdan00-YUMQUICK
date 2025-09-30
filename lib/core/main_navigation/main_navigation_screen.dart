@@ -18,6 +18,24 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
   String? _selectedCategory;
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Check for route arguments to set initial tab
+      final settings = ModalRoute.of(context)?.settings;
+      if (settings?.arguments is Map<String, dynamic>) {
+        final args = settings!.arguments as Map<String, dynamic>;
+        final initialTab = args['initialTab'] as int?;
+        if (initialTab != null && initialTab != _currentIndex) {
+          setState(() {
+            _currentIndex = initialTab;
+          });
+        }
+      }
+    });
+  }
+
   List<Widget> get _screens => [
     HomeScreen(onCategorySelected: onCategorySelected),
     MenuScreen(

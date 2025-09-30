@@ -6,10 +6,11 @@ import '../../../../data/models/menu_item_model.dart';
 import '../../../../data/repository/restaurant_repository.dart';
 import '../../../../data/services/category_filter_service.dart';
 import '../../../../data/services/search_service.dart';
-import '../widgets/header_search_bar.dart';
-import '../widgets/header_iconButton.dart';
-import '../widgets/food_categories.dart';
-import '../widgets/menu_item_card.dart';
+import '../widgets/main_menu_widgets/header_search_bar.dart';
+import '../widgets/main_menu_widgets/header_iconButton.dart';
+import '../widgets/main_menu_widgets/food_categories.dart';
+import '../widgets/main_menu_widgets/menu_item_card.dart';
+import 'food_card_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   final String? selectedCategory;
@@ -378,8 +379,14 @@ class _MenuScreenState extends State<MenuScreen> {
         return MenuItemCard(
           item: item,
           onTap: () {
-            // TODO: Navigate to item details
-            print('Selected item: ${item.itemName}');
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => FoodCardScreen(
+                  item: item,
+                  categoryId: _selectedCategory ?? 'meal',
+                ),
+              ),
+            );
           },
         );
       },

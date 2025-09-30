@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../../../data/models/menu_item_model.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../../../../data/models/menu_item_model.dart';
+import '../../../../../core/theme/app_colors.dart';
 
 class MenuItemCard extends StatelessWidget {
   final MenuItemModel item;
@@ -68,27 +68,32 @@ class MenuItemCard extends StatelessWidget {
             const SizedBox(height: 16),
             // Name, Rating, and Price Row
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Item Name with orange dot
+                // Item Name with orange dot - takes flexible space
                 Expanded(
+                  flex: 3,
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        item.itemName,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          height: 1.0, // line-height: 100%
-                          letterSpacing: 0.0, // letter-spacing: 0%
-                          color: AppColors.font,
+                      Flexible(
+                        child: Text(
+                          item.itemName,
+                          style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            height: 1.0, // line-height: 100%
+                            letterSpacing: 0.0, // letter-spacing: 0%
+                            color: AppColors.font,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                       ),
-                      // Orange dot
-                      const SizedBox(width: 11),
+                      // Orange dot - fixed width with constraint
                       Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
                         width: 6,
                         height: 6,
                         decoration: const BoxDecoration(
@@ -99,7 +104,7 @@ class MenuItemCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Rating
+                // Rating - fixed width
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -129,8 +134,8 @@ class MenuItemCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 30),
-                // Price
+                const SizedBox(width: 12),
+                // Price - fixed width
                 Text(
                   '\$${item.itemPrice.toStringAsFixed(2)}',
                   style: const TextStyle(

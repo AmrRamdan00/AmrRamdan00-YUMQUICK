@@ -8,6 +8,7 @@ class AppAssets {
   static const String facebookLogo = 'assets/icons/Facebook Icon.svg';
   static const String searchPostfix = 'assets/icons/search_postfix_icon.svg';
   static const String cartIcon = 'assets/icons/cart_icon.svg';
+  static const String cartIcon2 = 'assets/icons/cart_icon2.svg';
   static const String notificationIcon = 'assets/icons/notification_icon.svg';
   static const String profileIcon = 'assets/icons/person_icon.svg';
   static const String snackIcon = 'assets/icons/Snacks.svg';
@@ -20,4 +21,6 @@ class AppAssets {
   static const String favoritesIcon = 'assets/icons/Favorites_icon.svg';
   static const String ordersIcon = 'assets/icons/orders_icon.svg';
   static const String supportIcon = 'assets/icons/Support_icon.svg';
+  static const String fillIcon = 'assets/icons/Fill Point.svg';
+  static const String emptyIcon = 'assets/icons/Empty Point.svg';
 }
