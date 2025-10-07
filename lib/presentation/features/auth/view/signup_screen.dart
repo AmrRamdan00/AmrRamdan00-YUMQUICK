@@ -7,7 +7,7 @@ import '../../../../core/validation/password_validation.dart';
 import '../../../../data/repository/restaurant_repository.dart';
 import '../widgets/auth_widgets.dart';
 import 'login_screen.dart';
-import '../../home/view/home_screen.dart';
+import '../../../../core/main_navigation/main_navigation_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -61,10 +61,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           );
 
-          // Navigate to home screen after successful signup
+          // Navigate to main navigation screen after successful signup
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+              builder: (context) => const MainNavigationScreen(),
+            ),
           );
         }
       } catch (e) {

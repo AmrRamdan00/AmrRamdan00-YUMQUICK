@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_theme.dart';
-import '../../../../core/constants/app_assets.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_theme.dart';
+import '../../../../../core/constants/app_assets.dart';
 
 class FoodCategories extends StatelessWidget {
   final Function(String)? onCategorySelected;
+  final String? selectedCategory;
 
-  const FoodCategories({super.key, this.onCategorySelected});
+  const FoodCategories({
+    super.key,
+    this.onCategorySelected,
+    this.selectedCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +48,11 @@ class FoodCategories extends StatelessWidget {
   }
 
   Widget _buildCategoryItem(String name, String iconPath) {
+    final isSelected = selectedCategory?.toLowerCase() == name.toLowerCase();
+
     return GestureDetector(
       onTap: () {
         if (onCategorySelected != null) {
-          print(
-            'Home FoodCategories - Sending category: ${name.toLowerCase()}',
-          );
           onCategorySelected!(name.toLowerCase());
         }
         print('Selected category: $name');
@@ -56,23 +60,40 @@ class FoodCategories extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 53,
-            height: 64,
+            width: isSelected ? 65 : 53, // Bigger when selected
+            height: isSelected ? 76 : 64, // Bigger when selected
             decoration: BoxDecoration(
-              color: AppColors.yellow2,
+              color: isSelected ? AppColors.white : AppColors.yellow2,
               borderRadius: BorderRadius.circular(35),
+              border: isSelected
+                  ? Border.all(color: AppColors.yellowBase, width: 3)
+                  : null,
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: AppColors.orangeBase.withOpacity(0.4),
+                        spreadRadius: 3,
+                        blurRadius: 12,
+                        offset: const Offset(0, 3),
+                      ),
+                    ]
+                  : null,
             ),
             child: Center(
-              child: SvgPicture.asset(iconPath, width: 42, height: 42),
+              child: SvgPicture.asset(
+                iconPath,
+                width: isSelected ? 48 : 42, // Bigger icon when selected
+                height: isSelected ? 48 : 42, // Bigger icon when selected
+              ),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             name,
             style: AppTheme.agParagraph.copyWith(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: AppColors.font,
+              fontSize: isSelected ? 14 : 12, // Bigger text when selected
+              fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+              color: isSelected ? AppColors.white : AppColors.font,
             ),
           ),
         ],

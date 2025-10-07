@@ -3,13 +3,16 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../data/repository/restaurant_repository.dart';
 import '../../../../data/models/menu_item_model.dart';
+import '../../menu/view/food_card_screen.dart';
 import '../widgets/home_header.dart';
 import '../widgets/food_categories.dart';
 import '../widgets/food_section.dart';
 import '../widgets/promotional_banner.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final Function(String)? onCategorySelected;
+
+  const HomeScreen({super.key, this.onCategorySelected});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -52,6 +55,38 @@ class _HomeScreenState extends State<HomeScreen> {
         _errorMessage = e.toString();
         _isLoading = false;
       });
+    }
+  }
+
+  String _getCategoryIdForItem(MenuItemModel item) {
+    // Simple logic to determine category based on item name or type
+    // You can enhance this logic based on your app's requirements
+    final itemName = item.itemName.toLowerCase();
+
+    if (itemName.contains('pizza') ||
+        itemName.contains('burger') ||
+        itemName.contains('sandwich')) {
+      return 'meals';
+    } else if (itemName.contains('cake') ||
+        itemName.contains('dessert') ||
+        itemName.contains('ice cream')) {
+      return 'desserts';
+    } else if (itemName.contains('coffee') ||
+        itemName.contains('tea') ||
+        itemName.contains('juice') ||
+        itemName.contains('drink')) {
+      return 'drinks';
+    } else if (itemName.contains('salad') ||
+        itemName.contains('vegan') ||
+        itemName.contains('healthy')) {
+      return 'vegan';
+    } else if (itemName.contains('chips') ||
+        itemName.contains('fries') ||
+        itemName.contains('snack')) {
+      return 'snacks';
+    } else {
+      // Default category
+      return 'meals';
     }
   }
 
@@ -119,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20), // Add some top padding
-                  const FoodCategories(),
+                  FoodCategories(onCategorySelected: widget.onCategorySelected),
                   FoodSection(
                     title: 'Best Seller',
                     items: _bestSellingItems,
@@ -128,8 +163,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       print('View all best sellers');
                     },
                     onItemTap: (item) {
-                      // TODO: Navigate to item details
-                      print('Selected item: ${item.itemName}');
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FoodCardScreen(
+                            item: item,
+                            categoryId: _getCategoryIdForItem(item),
+                          ),
+                        ),
+                      );
                     },
                     onFavoriteTap: (item) {
                       // TODO: Add to favorites
@@ -146,8 +187,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       print('View all recommendations');
                     },
                     onItemTap: (item) {
-                      // TODO: Navigate to item details
-                      print('Selected item: ${item.itemName}');
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FoodCardScreen(
+                            item: item,
+                            categoryId: _getCategoryIdForItem(item),
+                          ),
+                        ),
+                      );
                     },
                     onFavoriteTap: (item) {
                       // TODO: Add to favorites
